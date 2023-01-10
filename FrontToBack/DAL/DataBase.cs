@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using FrontToBack.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace FrontToBack.DAL
 {
@@ -8,5 +9,6 @@ namespace FrontToBack.DAL
         {
 
         }
+        public DbSet<Slider> Sliders { get; set; }
     }
 }
