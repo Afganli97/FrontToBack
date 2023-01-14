@@ -9,5 +9,6 @@ namespace FrontToBack.ViewModels
         public SliderContext SliderContext { get; set; }
         public List<Category> Categories { get; set; }
         public List<Product> Products { get; set; }
+        public List<Image> Images { get; set; }
     }
 }
