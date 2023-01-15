@@ -10,5 +10,6 @@ namespace FrontToBack.ViewModels
         public List<Category> Categories { get; set; }
         public List<Product> Products { get; set; }
         public List<Image> Images { get; set; }
+        public List<Expert> Experts { get; set; }
     }
 }

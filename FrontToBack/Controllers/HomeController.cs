@@ -24,6 +24,7 @@ namespace FrontToBack.Controllers
             homeVM.Categories = _context.Categories.ToList();
             homeVM.Products = _context.Products.Where(p=>p.IsDeleted == false).ToList();
             homeVM.Images = _context.Images.ToList();
+            homeVM.Experts = _context.Experts.ToList();
 
             return View(homeVM);
         }
