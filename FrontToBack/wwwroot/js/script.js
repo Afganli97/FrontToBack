@@ -1,5 +1,16 @@
 $(document).ready(function () {
 
+    $(document).on('click', '#loadMoreBtn', function () {
+        $.ajax()
+        {
+            url: "/product/loadmore/",
+            method: "Get",
+                success: function (res){
+                    console.log(res);
+                }
+        }
+    });
+
     // HEADER
 
     $(document).on('click', '#search', function () {
