@@ -1,0 +1,37 @@
+﻿@model List<BasketVM>
+@{
+    ViewData["Title"] = "ShowBasket";
+}
+
+<div class="container">
+    <table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Image</th>
+            <th scope="col">Name</th>
+            <th scope="col">Category</th>
+            <th scope="col">Price</th>
+            <th scope="col">Count</th>
+            <th scope="col">Total Price</th>
+            <th scope="col">Settings</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <img src="~/img/@item.ImageUrl" width="50px">
+                </td>
+                <td>@item.Name</td>
+                <td>@item.CategoryName</td>
+                <td>@item.Price</td>
+                <td>@item.Count</td>
+                <td>@(item.Price * item.Count)</td>
+                <td>remove</td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+</div>
