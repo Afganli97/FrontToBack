@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using FrontToBack.DAL;
 using FrontToBack.Models;
+using FrontToBack.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -29,11 +30,15 @@ namespace FrontToBack.Controllers
 
         public IActionResult LoadMore()
         {
-            var products = _context.Products.Select(p=> new Category {
+            var products = _context.Products.Select(p=> new ProductVM {
                 Id = p.Id,
-                Name = p.Name
-            }).ToList() ;
-            return View();
+                Name = p.Name,
+                Category = p.Category,
+                Price = p.Price,
+                IsDeleted = p.IsDeleted
+            }).Skip(1).Take(1).ToList();
+
+            return Json(products);
         }
     }
 }

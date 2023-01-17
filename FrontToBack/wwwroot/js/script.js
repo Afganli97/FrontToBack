@@ -1,14 +1,13 @@
 $(document).ready(function () {
 
     $(document).on('click', '#loadMoreBtn', function () {
-        $.ajax()
-        {
+        $.ajax({
             url: "/product/loadmore/",
             method: "Get",
-                success: function (res){
-                    console.log(res);
-                }
-        }
+            success: function (res) {
+                console.log(res);
+            }
+        })
     });
 
     // HEADER
