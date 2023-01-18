@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -24,21 +25,18 @@ namespace FrontToBack.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-            var products = _context.Products.Where(p=>p.IsDeleted==false).Include(p => p.Category).Include(p=>p.Images).ToList();
+            var products = _context.Products.Where(p=>p.IsDeleted==false).Include(p => p.Category).Include(p=>p.Images).Take(2).ToList();
             return View(products);
         }
 
-        public IActionResult LoadMore()
+        public IActionResult Loadmore(int skip)
         {
-            var products = _context.Products.Select(p=> new ProductVM {
-                Id = p.Id,
-                Name = p.Name,
-                Category = p.Category,
-                Price = p.Price,
-                IsDeleted = p.IsDeleted
-            }).Skip(1).Take(1).ToList();
-
-            return Json(products);
+            if (skip >= _context.Products.ToList().Count)
+            {
+                return null;
+            }
+            var products = _context.Products.Include(p =>p.Category).Include(p=>p.Images).Skip(skip).Take(2).ToList();
+            return PartialView("_ProductPartial",products);
         }
     }
 }

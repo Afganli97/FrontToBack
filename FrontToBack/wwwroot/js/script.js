@@ -1,11 +1,17 @@
 $(document).ready(function () {
-
+    let skip = 0;
     $(document).on('click', '#loadMoreBtn', function () {
+        skip += 2;
         $.ajax({
-            url: "/product/loadmore/",
+            url: `/product/loadmore?skip=${skip}`,
             method: "Get",
             success: function (res) {
-                console.log(res);
+                if (res == null) {
+                    $("#loadMoreBtn").addClass("d-none");
+                }
+                else {
+                    $("#loadM").append(res)
+                }
             }
         })
     });

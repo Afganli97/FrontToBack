@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using FrontToBack.Models;
 
 namespace FrontToBack.ViewModels
@@ -11,6 +12,7 @@ namespace FrontToBack.ViewModels
         public bool IsDeleted { get; set; }
         public int CategoryId { get; set; }
         public Category Category { get; set; }
+        public List<Image> Images { get; set; }
     }
 }
 
