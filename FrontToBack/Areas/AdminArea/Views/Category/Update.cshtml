@@ -1,0 +1,34 @@
+﻿@model Category
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Areas/AdminArea/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="col-md-6 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Horizontal Form</h4>
+            <p class="card-description"> Horizontal form layout </p>
+            <form method="post" class="forms-sample">
+                <div class="form-group row">
+                    <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Name</label>
+                    <div class="col-sm-9">
+                        <input name="Name" type="text" class="form-control" id="exampleInputUsername2" value="@Model.Name">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="exampleInputUsername2" class="col-sm-3 col-form-label">DEscription</label>
+                    <div class="col-sm-9">
+                        <input name="Description" type="text" class="form-control" id="exampleInputUsername2" value="@Model.Description">
+                    </div>
+                </div>
+                <div class="form-check form-check-flat form-check-primary">
+                    <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input"> Remember me
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                <button asp-action="index" class="btn btn-light">Cancel</button>
+            </form>
+        </div>
+    </div>
+</div>

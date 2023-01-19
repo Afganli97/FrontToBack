@@ -1,0 +1,33 @@
+﻿@model Category
+@{
+    ViewData["Title"] = "Add";
+    Layout = "~/Areas/AdminArea/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col-md-6 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Horizontal Form</h4>
+            <p class="card-description"> Horizontal form layout </p>
+            <form method="post" class="forms-sample">
+                <div class="form-group row">
+                    <label asp-for="Name" class="col-sm-3 col-form-label">Name</label>
+                    <div class="col-sm-9">
+                        <input asp-for="Name" type="text" class="form-control"  placeholder="Name">
+                    </div>
+                    <span asp-validation-for="Name"></span>
+                </div>
+                <div class="form-group row">
+                    <label asp-for="Description" class="col-sm-3 col-form-label">Description</label>
+                    <div class="col-sm-9">
+                        <input asp-for="Description" type="text" class="form-control" placeholder="Description">
+                    </div>
+                    <span asp-validation-for="Name"></span>
+                </div>
+                <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                <button asp-action="index" class="btn btn-light">Cancel</button>
+            </form>
+        </div>
+    </div>
+</div>
+

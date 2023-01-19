@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileSystemGlobbing.Internal.Patterns;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
@@ -45,6 +46,10 @@ namespace FrontToBack
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(
+                    "areas",
+                    "{area:exists}/{controller=dashboard}/{action=Index}/{id?}"
+                    );
                 endpoints.MapControllerRoute(
                     "default",
                     "{controller=home}/{action=index}/{id?}"
