@@ -29,7 +29,7 @@ namespace FrontToBack
         {
             services.AddControllersWithViews();
             services.AddDbContext<DataBase>(option => {
-                option.UseSqlServer(_config["ConnectionStrings:DefaultConnection"]);
+                option.UseSqlite(_config["ConnectionStrings:DefaultConnection"]);
             });
         }
 
