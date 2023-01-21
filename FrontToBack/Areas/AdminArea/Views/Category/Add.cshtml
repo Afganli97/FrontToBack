@@ -13,16 +13,16 @@
                 <div class="form-group row">
                     <label asp-for="Name" class="col-sm-3 col-form-label">Name</label>
                     <div class="col-sm-9">
-                        <input asp-for="Name" type="text" class="form-control"  placeholder="Name">
+                        <input asp-for="Name" class="form-control"  placeholder="Name">
                     </div>
-                    <span asp-validation-for="Name"></span>
+                    <span asp-validation-for="Name" class="text-danger"></span>
                 </div>
                 <div class="form-group row">
                     <label asp-for="Description" class="col-sm-3 col-form-label">Description</label>
                     <div class="col-sm-9">
-                        <input asp-for="Description" type="text" class="form-control" placeholder="Description">
+                        <input asp-for="Description" class="form-control" placeholder="Description">
                     </div>
-                    <span asp-validation-for="Name"></span>
+                    <span asp-validation-for="Description" class="text-danger"></span>
                 </div>
                 <button type="submit" class="btn btn-primary mr-2">Submit</button>
                 <button asp-action="index" class="btn btn-light">Cancel</button>

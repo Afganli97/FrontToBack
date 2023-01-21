@@ -1,0 +1,24 @@
+﻿@model Category
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Areas/AdminArea/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col-md-6 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Delete Category</h4>
+            <p class="card-description">
+                @Model.Name
+            </p>
+            <blockquote class="blockquote">
+                <p class="mb-0">@Model.Description</p>
+            </blockquote>
+            <a class="btn btn-outline-dark" asp-action="index">Back</a>
+            <form method="post">
+                <button type="submit" class="btn btn-outline-danger">Delete</button>
+            </form>
+        </div>
+    </div>
+</div>
+
