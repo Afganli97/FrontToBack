@@ -8,6 +8,8 @@
     <Folder Include="Areas\AdminArea\Models\" />
     <Folder Include="wwwroot\" />
     <Folder Include="Views\Product\" />
+    <Folder Include="Services\" />
+    <Folder Include="Services\Interfaces\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,5 +29,7 @@
 
   <ItemGroup>
     <None Remove="Views\Product\" />
+    <None Remove="Services\" />
+    <None Remove="Services\Interfaces\" />
   </ItemGroup>
 </Project>

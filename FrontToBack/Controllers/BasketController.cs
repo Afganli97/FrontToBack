@@ -70,9 +70,61 @@ namespace FrontToBack.Controllers
         public IActionResult ShowBasket()
         {
             string list = Request.Cookies["basket"];
-            List<BasketVM> baskets = JsonConvert.DeserializeObject<List<BasketVM>>(list);
-
+            List<BasketVM> baskets;
+            if(list == null) 
+            {
+                baskets= new List<BasketVM>();
+                JsonConvert.SerializeObject(baskets);
+            }
+            else
+            {
+                baskets = JsonConvert.DeserializeObject<List<BasketVM>>(list);
+            }
             return View(baskets);
         }
+
+        public IActionResult Minus(int? id)
+        {
+            if(id == null) return RedirectToAction("showbasket");
+
+            string list = Request.Cookies["basket"];
+            List<BasketVM> baskets = JsonConvert.DeserializeObject<List<BasketVM>>(list);
+            if(!baskets.Any(b=>b.Id == id)) return RedirectToAction("showbasket");
+
+            baskets.Find(x=>x.Id == id).Count--;
+            if (baskets.Find(x=>x.Id == id).Count == 0)
+            {
+                 baskets.Remove(baskets.Find(x=>x.Id == id));
+            }
+            Response.Cookies.Append("basket",JsonConvert.SerializeObject(baskets));
+            return RedirectToAction("showbasket");
+        }
+
+        public IActionResult Plus(int? id)
+        {   
+            if(id == null) return RedirectToAction("showbasket");
+
+            string list = Request.Cookies["basket"];
+            List<BasketVM> baskets = JsonConvert.DeserializeObject<List<BasketVM>>(list);
+            if(!baskets.Any(b=>b.Id == id)) return RedirectToAction("showbasket");
+
+            baskets.Find(x=>x.Id == id).Count++;
+            Response.Cookies.Append("basket",JsonConvert.SerializeObject(baskets));
+            return RedirectToAction("showbasket");
+        }
+
+        public IActionResult Delete(int? id)
+        {
+            if(id == null) return RedirectToAction("showbasket");
+
+             string list = Request.Cookies["basket"];
+            List<BasketVM> baskets = JsonConvert.DeserializeObject<List<BasketVM>>(list);
+            if(!baskets.Any(b=>b.Id == id)) return RedirectToAction("showbasket");
+
+            baskets.Remove(baskets.Find(x=>x.Id == id));
+            Response.Cookies.Append("basket",JsonConvert.SerializeObject(baskets));
+            return RedirectToAction("showbasket");
+        }
+
     }
 }

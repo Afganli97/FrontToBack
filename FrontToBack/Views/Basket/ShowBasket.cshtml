@@ -28,10 +28,15 @@
                 <td>@item.Price</td>
                 <td>@item.Count</td>
                 <td>@(item.Price * item.Count)</td>
-                <td>remove</td>
+                <td class="d-flex justify-content-around">
+                    <div><a asp-action="minus" asp-route-id="@item.Id"><i class="fa-solid fa-minus"></i></a></div>
+                    <div><a asp-action="plus" asp-route-id="@item.Id"><i class="fa-solid fa-plus"></i></a></div>
+                    <div><a asp-action="delete" asp-route-id="@item.Id"><i class="fa-solid fa-xmark text-danger"></i></a></div>
+                </td>
             </tr>
         }
 
     </tbody>
 </table>
+    <p>Total price: @Model.Sum(x=>x.Count * x.Price)</p>
 </div>
