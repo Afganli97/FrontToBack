@@ -1,19 +1,29 @@
 $(document).ready(function () {
     let skip = 0;
+    debugger
     $(document).on('click', '#loadMoreBtn', function () {
         skip += 2;
+        let products = document.querySelectorAll(".product-item");
         $.ajax({
             url: `/product/loadmore?skip=${skip}`,
             method: "Get",
             success: function (res) {
-                if (res == null) {
-                    $("#loadMoreBtn").addClass("d-none");
-                }
-                else {
-                    $("#loadM").append(res)
+                $("#loadM").append(res);
+            },
+            error: function(){
+                $('#loadMoreBtn').addClass('d-none');
+            }
+        });
+        $.ajax({
+            url: `/product/getcount`,
+            method: "Get",
+            success: function(res){
+                if (res-2 == skip) {
+                    $('#loadMoreBtn').addClass('d-none');
                 }
             }
-        })
+        });
+
     });
 
     // HEADER

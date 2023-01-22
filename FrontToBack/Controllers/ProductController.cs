@@ -38,6 +38,12 @@ namespace FrontToBack.Controllers
             var products = _context.Products.Include(p =>p.Category).Include(p=>p.Images).Skip(skip).Take(2).ToList();
             return PartialView("_ProductPartial",products);
         }
+
+        public IActionResult GetCount()
+        {
+            return Ok(_context.Products.Where(p=>p.IsDeleted==false).Count());
+        }
+
     }
 }
 
