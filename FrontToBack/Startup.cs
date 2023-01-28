@@ -42,10 +42,12 @@ namespace FrontToBack
             services.AddIdentity<AppUser, IdentityRole>(options => {
                 options.User.RequireUniqueEmail = true;
 
-                options.Password.RequiredLength = 8;
+                //Yoxlama merhelesi rahat olsun deye komente atmisham
+                //options.Password.RequiredLength = 8;
                 options.Password.RequireDigit = true;
-                options.Password.RequireUppercase = true;
-                options.Password.RequireLowercase = true;
+                //options.Password.RequireNonAlphanumeric = true;
+                //options.Password.RequireUppercase = true;
+                //options.Password.RequireLowercase = true;
 
                 options.Lockout.MaxFailedAccessAttempts = 3;
                 options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(2);
