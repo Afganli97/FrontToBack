@@ -1,0 +1,39 @@
+@model List<Product>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/AdminArea/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Products</h4>
+            <p class="card-description">
+                <a asp-action="create" class="btn btn-outline-success">Add Product</a>
+            </p>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Main image</th>
+                        <th> Product Name </th>
+                        <th> Settings </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td><img src="~/img/@item.Images.FirstOrDefault(i=>i.IsMain==true).ImageUrl"/></td>
+                            <td>@item.Name</td>
+                            <td>
+                                <a asp-action="detail" asp-route-id="@item.Id" class="btn btn-outline-primary">Details</a>
+                                <a asp-action="update" asp-route-id="@item.Id" class="btn btn-outline-warning">Update</a>
+                                <a asp-action="delete" asp-route-id="@item.Id" class="btn btn-outline-danger">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
