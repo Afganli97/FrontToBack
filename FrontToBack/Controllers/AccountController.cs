@@ -1,4 +1,6 @@
+using System;
 using System.Threading.Tasks;
+using FrontToBack.Helpers;
 using FrontToBack.Models;
 using FrontToBack.ViewModels;
 using Microsoft.AspNetCore.Identity;
@@ -10,10 +12,12 @@ namespace FrontToBack.Controllers
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
-        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
+        private readonly RoleManager<IdentityRole> _roleManager;
+        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _roleManager = roleManager;
         }
 
         public IActionResult Login()
@@ -22,7 +26,7 @@ namespace FrontToBack.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(LoginVM login)
+        public async Task<IActionResult> Login(LoginVM login, string ReturnUrl)
         {   
             if(!ModelState.IsValid) return View();
 
@@ -47,6 +51,11 @@ namespace FrontToBack.Controllers
             }
 
             await _signInManager.SignInAsync(user, login.RememberMe);
+
+            if (ReturnUrl != null)
+            {
+                return Redirect(ReturnUrl);
+            }
             
             return RedirectToAction("index", "home");
         }
@@ -84,7 +93,21 @@ namespace FrontToBack.Controllers
                 return View();
             }
 
+            await _userManager.AddToRoleAsync(user,RolesEnum.Member.ToString());
+
             return RedirectToAction("index", "home");
         }
+
+        // public async Task<IActionResult> AddRoles()
+        // {
+        //     foreach (var role in Enum.GetValues(typeof(RolesEnum)))
+        //     {
+        //         if(!await _roleManager.RoleExistsAsync(role.ToString()))
+        //         {
+        //             await _roleManager.CreateAsync(new IdentityRole{Name = role.ToString()});
+        //         }
+        //     }
+        //     return Content("Role elave olundu");
+        // }
     }
 }
